@@ -46,15 +46,9 @@ const store = createStore(
 );
 // End Redux ----------------------------------
 
-const env = 'sandbox';
-// API url
-const backendUrl = `https://api${
-  env === 'sandbox' ? '.sandbox' : ''
-}.lead-marketing-system.de`;
-// Forntend url
-const frontendUrl = `https://admin${
-  env === 'sandbox' ? '.sandbox' : ''
-}.lead-marketing-system.de`;
+
+const backendUrl = `/'
+
 
 axios.defaults.baseURL = backendUrl;
 // axios.defaults.headers.common.Authorization = "AUTH TOKEN";
