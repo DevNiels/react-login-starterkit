@@ -47,7 +47,7 @@ const store = createStore(
 // End Redux ----------------------------------
 
 
-const backendUrl = `/'
+const backendUrl = '/'
 
 
 axios.defaults.baseURL = backendUrl;
