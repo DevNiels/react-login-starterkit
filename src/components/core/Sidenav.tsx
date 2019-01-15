@@ -19,7 +19,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
-import * as actionTypes from '../../store/actions';
 
 const drawerWidth = 240;
 
@@ -27,7 +26,8 @@ interface ISidenav {
   classes: any;
   children: any;
   history: any;
-  onLogout: any;
+  isAuthenticated: boolean;
+  authRole: string;
 }
 
 class Sidenav extends React.Component<ISidenav, any> {
@@ -44,14 +44,6 @@ class Sidenav extends React.Component<ISidenav, any> {
   };
 
   public handleLinkClick = (url: string): void => {
-    this.props.history.push(url);
-  };
-
-  public handleLogout = (url: string): void => {
-    localStorage.removeItem('loggedInUser');
-
-    this.props.onLogout();
-
     this.props.history.push(url);
   };
 
@@ -121,7 +113,7 @@ class Sidenav extends React.Component<ISidenav, any> {
             </ListItem>
             <ListItem
               button={true}
-              onClick={this.handleLogout.bind(this, '/login')}
+              onClick={this.handleLinkClick.bind(this, '/logout')}
             >
               <ListItemIcon>
                 <ExitToAppIcon className={classes.icon} color='action' />
@@ -136,9 +128,10 @@ class Sidenav extends React.Component<ISidenav, any> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapStateToProps = (state: any) => {
   return {
-    onLogout: () => dispatch({ type: actionTypes.LOGOUT_USER })
+    isAuthenticated: state.auth.token !== null,
+    authRole: state.auth.authRole
   };
 };
 
@@ -221,7 +214,7 @@ export default compose(
   })),
   withRouter,
   connect(
-    null,
-    mapDispatchToProps
+    mapStateToProps,
+    null
   )
 )(Sidenav);

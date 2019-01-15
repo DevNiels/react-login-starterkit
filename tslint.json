@@ -12,5 +12,7 @@
     "quotemark": [true, "single", "jsx-single", "avoid-escape"],
     // "no-console": false,
     "jsx-no-lambda": false
+    // "named-imports-order": "any",
+    // "ordered-imports": false
   }
 }

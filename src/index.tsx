@@ -3,9 +3,9 @@ import * as ReactDOM from 'react-dom';
 
 import axios from 'axios';
 import { Provider } from 'react-redux';
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import App from './App';
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth';
 
@@ -14,10 +14,47 @@ const rooReducer = combineReducers({
   auth: authReducer
 });
 
-const store = createStore(rooReducer);
+// Middleware Example
+// tslint:disable-next-line:no-shadowed-variable
+const logger = (store: any) => {
+  return (next: any) => {
+    return (action: any) => {
+      // tslint:disable-next-line:no-console
+      // console.log('[Middleware] Dispatching', action);
+      const result = next(action);
+      // tslint:disable-next-line:no-console
+      // console.log('[Middleware] next state', store.getState());
+      return result;
+    };
+  };
+};
+
+// Redux DevTools -----
+declare global {
+  // tslint:disable-next-line:interface-name
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// End Redux DevTools -----
+
+const store = createStore(
+  rooReducer,
+  composeEnhancers(applyMiddleware(logger, thunk))
+);
 // End Redux ----------------------------------
 
-const backendUrl = '/';
+const env = 'sandbox';
+// API url
+const backendUrl = `https://api${
+  env === 'sandbox' ? '.sandbox' : ''
+}.lead-marketing-system.de`;
+// Forntend url
+const frontendUrl = `https://admin${
+  env === 'sandbox' ? '.sandbox' : ''
+}.lead-marketing-system.de`;
 
 axios.defaults.baseURL = backendUrl;
 // axios.defaults.headers.common.Authorization = "AUTH TOKEN";
