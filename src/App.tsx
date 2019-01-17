@@ -6,18 +6,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { compose } from 'recompose';
 import Login from './components/Auth/Login';
 import Logout from './components/Auth/Logout';
-import Dashboard from './components/core/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import * as actions from './store/actions/index';
 
 // const Dashboard = React.lazy(() => import('./components/Dashboard/Dashboard'));
 
 export interface IDashboardProps {
   isAuthenticated: boolean;
-  authRole: string;
+  authRole: string | null;
   onTryAutoSignup: any;
 }
 
-class App extends React.Component<IDashboardProps, any> {
+export class App extends React.Component<IDashboardProps, any> {
   public componentDidMount() {
     this.props.onTryAutoSignup();
   }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Base64 } from 'js-base64';
 
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from './actionTypes';
 
 export const authStart = () => {
   return { type: actionTypes.AUTH_START };

@@ -2,14 +2,14 @@ import * as React from 'react';
 
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import MainLayout from 'src/layouts/MainLayout';
+import MainLayout from '../../layouts/MainLayout';
 
 export interface IDashboardProps {
   authRole: string;
   children?: any;
 }
 
-const Dashboard = (props: IDashboardProps) => {
+export const Dashboard = (props: IDashboardProps) => {
   return <MainLayout>Du bist als {props.authRole} eingeloggt.</MainLayout>;
 };
 

@@ -9,14 +9,13 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import * as actions from '../../store/actions/index';
 
 export interface ILoginProps {
   classes: any;
   history: any;
-  authRedirectPath: any;
   loading: boolean;
   error: any;
   isAuthenticated: boolean;
@@ -24,7 +23,7 @@ export interface ILoginProps {
   onAuth: any;
 }
 
-class Login extends React.Component<ILoginProps, any> {
+export class Login extends React.Component<ILoginProps, any> {
   public state = {
     password: '',
     username: ''
@@ -63,7 +62,7 @@ class Login extends React.Component<ILoginProps, any> {
 
     let errorMessage = null;
     if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
+      errorMessage = <p>{this.props.error}</p>;
     }
 
     return (
@@ -100,6 +99,7 @@ class Login extends React.Component<ILoginProps, any> {
               margin='normal'
             />
           </div>
+          {errorMessage}
         </CardContent>
         <CardActions>{btn}</CardActions>
       </Card>
@@ -142,7 +142,7 @@ export default compose(
       margin: theme.spacing.unit
     },
     progress: {
-      margin: 10
+      margin: 0
     }
   })),
   withRouter,

@@ -8,7 +8,7 @@ export interface IAuthState {
   loading: boolean;
 }
 
-const initialState = {
+const initialState: IAuthState = {
   token: null,
   authRole: null,
   error: null,
@@ -36,10 +36,10 @@ const authFail = (state: IAuthState, action: any) => {
 };
 
 const authLogout = (state: IAuthState, action: any) => {
-  return updateObject(state, { token: null, userId: null });
+  return updateObject(state, { token: null, authRole: null });
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state: IAuthState = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.AUTH_START:
       return authStart(state, action);

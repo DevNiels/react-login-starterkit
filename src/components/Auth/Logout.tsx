@@ -8,7 +8,7 @@ interface ILogout {
   onLogout: any;
 }
 
-class Logout extends React.Component<ILogout, any> {
+export class Logout extends React.Component<ILogout, any> {
   public componentDidMount() {
     this.props.onLogout();
   }

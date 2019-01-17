@@ -7,7 +7,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import authReducer from './store/reducers/auth';
+import authReducer from './store/reducers/authReducer';
 
 // Redux --------------------------------------
 const rooReducer = combineReducers({
@@ -40,7 +40,7 @@ declare global {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // End Redux DevTools -----
 
-const store = createStore(
+export const store = createStore(
   rooReducer,
   composeEnhancers(applyMiddleware(logger, thunk))
 );

@@ -30,7 +30,7 @@ interface ISidenav {
   authRole: string;
 }
 
-class Sidenav extends React.Component<ISidenav, any> {
+export class Sidenav extends React.Component<ISidenav, any> {
   public state = {
     open: true
   };
@@ -122,7 +122,7 @@ class Sidenav extends React.Component<ISidenav, any> {
             </ListItem>
           </List>
         </Drawer>
-        <main className={classes.content}>{children}</main>
+        <div className={classes.content}>{children}</div>
       </div>
     );
   }
