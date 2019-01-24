@@ -3,6 +3,9 @@
 2. ```npm i```
 3. ```npm start```
 
+# Testing
+All: ```npm test```
+Single: ```npm test [name]``` e.g. ```npm test App```
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
