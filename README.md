@@ -1,3 +1,9 @@
+# Getting Started
+1. ```git clone https://github.com/niels-he/react-login-starterkit.git```
+2. ```npm i```
+3. ```npm start```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
